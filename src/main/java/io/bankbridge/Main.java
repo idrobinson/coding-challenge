@@ -7,14 +7,18 @@ import io.bankbridge.handler.BanksRemoteCalls;
 
 public class Main {
 
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
-		port(8080);
+        port(8080);
 
-		BanksCacheBased.init();
-		BanksRemoteCalls.init();
+        BanksCacheBased.init();
+	BanksRemoteCalls.init();
 		
-		get("/v1/banks/all", (request, response) -> BanksCacheBased.handle(request, response));
-		get("/v2/banks/all", (request, response) -> BanksRemoteCalls.handle(request, response));
+        try {
+	    get("/v1/banks/all", (request, response) -> BanksCacheBased.handle(request, response));
+	    get("/v2/banks/all", (request, response) -> BanksRemoteCalls.handle(request, response));
+	} catch (Exception e) {
+            throw e;
 	}
+    }
 }
