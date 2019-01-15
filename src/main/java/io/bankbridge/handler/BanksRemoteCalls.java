@@ -37,10 +37,10 @@ public class BanksRemoteCalls {
 
 	// Using the retrieved file contents stored in the config Map:
 	//     Loop through the config, using a lambda.
-	//     Open an http connection and get the returned entity.
+	//     Open an http connection to each url and get the returned entity.
 	//     Read the entity into a BankModel.
 	//     If the BIC is valid, put into the result list.
-	// Nest try statements to first catch any IOException, then to finally close the http objects & connection.
+	// Nest try statements to first catch any IOException, then to "finally" close the http objects & connection.
         List<Map> result = new ArrayList<>();
 	CloseableHttpClient httpclient = HttpClients.createDefault();
 	
